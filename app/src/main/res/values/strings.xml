@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Meme Community</string>
+    <string name="title_images">Images</string>
+    <string name="title_videos">Videos</string>
+    <string name="title_upload">Upload</string>
+    <string name="select_image">Select Image</string>
+    <string name="select_video">Select Video</string>
+    <string name="uploader_name">Uploader Name</string>
+    <string name="enter_image_name">Enter image name</string>
+    <string name="enter_video_name">Enter video name</string>
+    <string name="download">Download</string>
+    <string name="image_meme">Images MEME</string>
+    <string name="video_meme">Videos MEME</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="error_server">Error Server</string>
+    <string name="explain">Can take 24 hours for operation again</string>
+    <string name="internet_disconnected">Internet Disconnected</string>
+</resources>

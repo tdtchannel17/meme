@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.ddona.memecommunity.model.VideoUpload" />
+    </data>
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <VideoView
+                    android:id="@+id/ivVideoUpload"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_256dp"
+                    android:layout_centerInParent="true"
+                    app:setVideo="@{data.pathUri}" />
+
+                <ImageButton
+                    android:id="@+id/btnDeleteVideo"
+                    android:layout_width="@dimen/_32dp"
+                    android:layout_height="@dimen/_32dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:background="?selectableItemBackground"
+                    android:src="@drawable/ic_baseline_close_24" />
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/edtNameUpload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@null"
+                android:hint="@string/enter_image_name"
+                android:paddingLeft="@dimen/_16dp"
+                android:paddingTop="@dimen/_4dp"
+                android:paddingRight="@dimen/_16dp"
+                android:paddingBottom="@dimen/_4dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sp"
+                app:setEditText="@{data.name}" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
