@@ -9,6 +9,7 @@ import android.database.Cursor
 import android.graphics.Color
 import android.media.MediaPlayer
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.OpenableColumns
 import android.view.*
@@ -79,25 +80,42 @@ class UploadFragment : Fragment(), PopupMenu.OnMenuItemClickListener, View.OnCli
             }
             R.id.btnSelectImage -> {
                 listImageUpload.clear()
-                val intent = Intent(
-                    Intent.ACTION_PICK,
-                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-                )
-                intent.type = "image/*"
-                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-                intent.action = Intent.ACTION_GET_CONTENT
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), IMAGE_CODE)
+                listVideoUpload.clear()
+                if (Build.VERSION.SDK_INT < 19) {
+                    val intent = Intent()
+                    intent.type = "image/*"
+                    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+                    intent.action = Intent.ACTION_GET_CONTENT
+                    startActivityForResult(
+                        Intent.createChooser(intent, "Choose Pictures"), IMAGE_CODE
+                    )
+                } else { // For latest versions API LEVEL 19+
+                    val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+                    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+                    intent.addCategory(Intent.CATEGORY_OPENABLE)
+                    intent.type = "image/*"
+                    startActivityForResult(intent, IMAGE_CODE)
+                }
             }
             R.id.btnSelectVideo -> {
                 listImageUpload.clear()
-                val intent = Intent(
-                    Intent.ACTION_PICK,
-                    android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI
-                )
-                intent.type = "video/*"
-                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-                intent.action = Intent.ACTION_GET_CONTENT
-                startActivityForResult(Intent.createChooser(intent, "Select Video"), VIDEO_CODE)
+                listVideoUpload.clear()
+
+                if (Build.VERSION.SDK_INT < 19) {
+                    val intent = Intent()
+                    intent.type = "video/*"
+                    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+                    intent.action = Intent.ACTION_GET_CONTENT
+                    startActivityForResult(
+                        Intent.createChooser(intent, "Select Video"), VIDEO_CODE
+                    )
+                } else { // For latest versions API LEVEL 19+
+                    val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+                    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+                    intent.addCategory(Intent.CATEGORY_OPENABLE)
+                    intent.type = "video/*"
+                    startActivityForResult(intent, VIDEO_CODE)
+                }
             }
             R.id.btnUploadImage -> {
                 uploadImages()
